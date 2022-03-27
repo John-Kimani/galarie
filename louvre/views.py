@@ -1,3 +1,4 @@
+from unicodedata import category
 from django.shortcuts import render
 from .models import Location, Image
 # Create your views here.
@@ -18,3 +19,17 @@ def find_image_location(request, location):
     images = Image.objects.filter(location_name=location)
 
     return render(request, 'louvre/location.html', {'location_images': images})
+
+def search(request):
+    '''
+    View function that enables search
+    '''
+    if 'imagesearched' in request.GET and request.GET['imagesearched']:
+        category = request.GET.get("imagesearched")
+        searched_images = Image.find_image_by_category(category)
+        message = f"{category}"
+
+        return render(request, 'louvre/search.html', {'message': message, 'images':searched_images})
+    else:
+        message = 'Invalid search image category'
+        return render(request, 'louvre/seaech.html', {'message': message})
