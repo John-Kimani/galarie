@@ -57,3 +57,19 @@ class Image(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Location(models.Model):
+    '''
+    class that handles location instances
+    '''
+    name = models.CharField(max_length=40, unique=True)
+
+    @classmethod
+    def find_location(cls):
+        '''
+        Function that enable to get location
+        '''
+        location = Location.objects.all()
+        
+        return location
