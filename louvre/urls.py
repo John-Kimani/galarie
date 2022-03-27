@@ -2,5 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('louvre/', views.index, name='gallery') #path to my domain.com/louvre
+    # path('', views.index, name='index'), #path to my domain.com/louvre
+    path('', views.gallery, name='gallery'),
+    path('search/', views.search, name='search')
 ]

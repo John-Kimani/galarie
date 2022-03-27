@@ -10,7 +10,13 @@ def index(request):
     images = Image.objects.all()
     location = Location.find_location()
 
-    return render(request, 'louvre/index.html', {'images':images}, {'locations':location})
+    return render(request, 'index.html', {'images':images}, {'locations':location})
+
+def gallery(request):
+    '''
+    Test gallery
+    '''
+    return render(request, 'louvre/gallery.html')
 
 def find_image_location(request, location):
     '''
@@ -29,7 +35,7 @@ def search(request):
         searched_images = Image.find_image_by_category(category)
         message = f"{category}"
 
-        return render(request, 'louvre/search.html', {'message': message, 'images':searched_images})
+        return render(request, 'search.html', {'message': message, 'images':searched_images})
     else:
         message = 'Invalid search image category'
-        return render(request, 'louvre/seaech.html', {'message': message})
+        return render(request, 'search.html', {'message': message})
