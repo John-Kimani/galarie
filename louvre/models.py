@@ -71,5 +71,21 @@ class Location(models.Model):
         Function that enable to get location
         '''
         location = Location.objects.all()
-        
+
         return location
+
+    def __str__(self):
+        return self.name
+
+    @classmethod
+    def update_location(cls, id, value):
+        '''
+        Function that enables to update location
+        '''
+        cls.objects.filter(id=id).update(image=value)
+
+    def save_location(self):
+        self.save()
+
+    def delete_location(self):
+        self.delete()
