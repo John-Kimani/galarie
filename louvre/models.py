@@ -24,3 +24,11 @@ class Image(models.Model):
         image_location = Image.objects.filter(location_name=location)
 
         return image_location
+
+    @classmethod
+    def image_update(cls, id, value):
+        '''
+        Function to enable admin update images
+        '''
+        image = cls.objects.filter(id=id).update(image=value)
+        return image
