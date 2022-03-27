@@ -11,6 +11,22 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+#importations
+import os
+from decouple import config, Csv
+
+#cloudinary
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+#cloudinary setup
+cloudinary.config(
+    cloud_name = config('CLOUDINARY_CLOUD_NAME'),
+    api_key = config('CLOUDINARY_API_KEY'),
+    api_secret=config('CLOUDINARY_API_SECRET'),
+    secure = True
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,6 +55,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'louvre',
     'bootstrap4',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [

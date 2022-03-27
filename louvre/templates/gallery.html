@@ -1,4 +1,4 @@
-{% extends 'louvre/base.html' %}
+{% extends 'base.html' %}
 
 
 {% block content %}
@@ -7,5 +7,11 @@
     <div class="container">
         <h1 class="text-center">Welcome to my louvre museam</h1>
         <p>This is a display for my favourite images</p>
+
+        {% for image in images %}
+            <div class="card">
+                <img src="{{image.image_url}}" alt="Image">
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}

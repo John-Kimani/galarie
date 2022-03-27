@@ -7,16 +7,17 @@ def index(request):
     '''
     View function for louvre app
     '''
-    images = Image.objects.all()
-    location = Location.find_location()
-
-    return render(request, 'index.html', {'images':images}, {'locations':location})
+    return render(request, 'index.html')
 
 def gallery(request):
     '''
     Test gallery
     '''
-    return render(request, 'louvre/gallery.html')
+    images = Image.objects.all()
+    location = Location.find_location()
+    my_gallery = {'images':images}
+
+    return render(request, 'gallery.html', my_gallery)
 
 def find_image_location(request, location):
     '''
