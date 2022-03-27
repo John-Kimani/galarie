@@ -10,3 +10,11 @@ def index(request):
     location = Location.find_location()
 
     return render(request, 'louvre/index.html', {'images':images}, {'locations':location})
+
+def find_image_location(request, location):
+    '''
+    View function on modal display
+    '''
+    images = Image.objects.filter(location_name=location)
+
+    return render(request, 'louvre/location.html', {'location_images': images})
