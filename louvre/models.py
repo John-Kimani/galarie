@@ -3,6 +3,14 @@ from django.db import models
 # import cloudinary
 from cloudinary.models import CloudinaryField
 # Create your models here.
+class Category(models.Model):
+    '''
+    class that handles image category
+    '''
+    name = models.CharField(max_length=40, unique=True)
+
+    def __str__(self):
+        return self.name
 
 class Image(models.Model):
     '''
@@ -40,3 +48,6 @@ class Image(models.Model):
         '''
         images = cls.objects.filter(category__name__icontains=category)
         return images
+
+    def __str__(self):
+        return self.name
