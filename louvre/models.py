@@ -32,3 +32,11 @@ class Image(models.Model):
         '''
         image = cls.objects.filter(id=id).update(image=value)
         return image
+
+    @classmethod
+    def find_image_by_category(cls, category):
+        '''
+        Function that filters images using category
+        '''
+        images = cls.objects.filter(category__name__icontains=category)
+        return images
