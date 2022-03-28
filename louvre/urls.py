@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    path('index', views.index, name='index'), #path to my domain.com/louvre
+    path('about/', views.index, name='about'), #path to my domain.com/louvre
     path('', views.gallery, name='gallery'),
     path('search/', views.search, name='search'),
     path('location/', views.find_image_location, name='location')

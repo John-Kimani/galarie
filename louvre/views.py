@@ -6,7 +6,7 @@ def index(request):
     '''
     View function for louvre app
     '''
-    return render(request, 'index.html')
+    return render(request, 'about.html')
 
 def gallery(request):
     '''
