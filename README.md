@@ -1,9 +1,10 @@
 # GALLERIE
-Gallerie is a photo gallery web application.
+Gallerie is a photo gallery web application. Gallerie displays images that posted by the admin. The images are of different categories and also display different locations in which the image was taken.Users can also copy the link of an image.
+Welcome to Gallerie where we store the memories for you!
 
 
 # App screenshot
-![Gallerie]()
+![Gallerie](/static/images/lourve.png)
 
 
 ## Table of Content
