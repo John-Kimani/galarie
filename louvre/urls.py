@@ -7,7 +7,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('index', views.index, name='index'), #path to my domain.com/louvre
     path('', views.gallery, name='gallery'),
-    path('search/', views.search, name='search')
+    path('search/', views.search, name='search'),
+    path('location/', views.find_image_location, name='location')
 ]
 
 if settings.DEBUG:

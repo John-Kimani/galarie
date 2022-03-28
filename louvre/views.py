@@ -25,7 +25,7 @@ def find_image_location(request, location):
     '''
     images = Image.objects.filter(location_name=location)
 
-    return render(request, 'louvre/location.html', {'location_images': images})
+    return render(request, 'location.html', {'location_images': images})
 
 def search(request):
     '''
