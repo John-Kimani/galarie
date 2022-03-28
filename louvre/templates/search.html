@@ -11,24 +11,15 @@
         {% endif %}
         <!-- display images -->
 
-        <div class="row">
-            {% if images%}
-            {% for image in images %}
-            <div class="col-sm-6">
-                <img src="{{image.image.url}}" alt="Image">
-            </div>
-            {% endfor %}
-            {% endif %}
-        </div>
 
-        <!-- <div class="card-columns">
+        <div class="card-columns">
             {% for image in images %}
             <a type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
                 <img src="{{image.image.url}}" alt="Image" class="img-thumbnail">
-            </a> -->
+            </a>
 
             <!-- Modal -->
-            <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -48,6 +39,6 @@
                 </div>
             </div>
             {% endfor %}
-        </div> -->
+        </div>
     </div>
 {% endblock %}
