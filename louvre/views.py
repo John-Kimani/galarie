@@ -14,11 +14,10 @@ def gallery(request):
     Test gallery
     '''
     images = Image.objects.all()
-    ctx = {'images':images}
     location = Location.find_location()
 
 
-    return render(request, 'gallery.html', ctx)
+    return render(request, 'gallery.html', {'images':images, 'location':location})
 
 def find_image_location(request, location):
     '''
