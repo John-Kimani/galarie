@@ -17,6 +17,14 @@ class Category(models.Model):
 
     def delete_category(self):
         self.delete()
+    
+    @classmethod
+    def find_by_category(cls):
+        '''
+        Function to find images by category
+        '''
+        category = Category.objects.all()
+        return category
 
 
 class Location(models.Model):

@@ -1,6 +1,5 @@
-from unicodedata import category
 from django.shortcuts import render
-from .models import Location, Image
+from .models import Category, Location, Image
 # Create your views here.
 
 def index(request):
@@ -15,9 +14,10 @@ def gallery(request):
     '''
     images = Image.objects.all()
     location = Location.find_location()
+    category = Category.find_by_category()
 
 
-    return render(request, 'gallery.html', {'images':images, 'location':location})
+    return render(request, 'gallery.html', {'images':images, 'location':location, 'categorys':category})
 
 def find_image_location(request, location):
     '''
