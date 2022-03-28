@@ -13,9 +13,12 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 #importations
 import os
-# import environ
+import environ
+import django_heroku
+import dj_database_url
+from decouple import config,Csv
 
-# env= environ.Env()
+# env = environ.Env()
 
 # environ.Env.read_env()
 
@@ -24,39 +27,35 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 
-#cloudinary variable
-# CLOUDINARY_CLOUD_NAME = env("CLOUDINARY_CLOUD_NAME")
-# CLOUDINARY_API_KEY = env("CLOUDINARY_API_KEY")
-# CLOUDINARY_API_SECRET = env("CLOUDINARY_API_SECRET")
 
-#cloudinary setup
-# cloudinary.config(
-#     cloud_name = 'CLOUDINARY_CLOUD_NAME',
-#     api_key = 'CLOUDINARY_API_KEY',
-#     api_secret= 'CLOUDINARY_API_SECRET',
-# )
+
 
 cloudinary.config(
-    cloud_name = 'dbgbail9r',
-    api_key = '914358528891855',
-    api_secret= 'KtFdNz8kBoGAHktKt2CcSKUGE_w',
+    cloud_name=config('CLOUDINARY_CLOUD_NAME'),
+    api_key=config('CLOUDINARY_API_KEY'),
+    api_secret=config('CLOUDINARY_API_SECRET'),
+    secure=True
 )
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+# BASE_DIR = Path(__file__).resolve().parent.parent
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MODE=config("MODE", default="dev")
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-))edcw-#%j1wo_xkel2v0!5qt8sjawvy8(06f#kef2t5(ms1^('
+SECRET_KEY = config('SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 
 # Application definition
@@ -82,6 +81,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'gallery.urls'
@@ -108,14 +108,25 @@ WSGI_APPLICATION = 'gallery.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'gallerie',
-        'USER': 'kimperria',
-        'PASSWORD': 'kimani',
+#deployment
+
+if config('MODE')=="dev":
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': config('DB_NAME'),
+            'USER': config('DB_USER'),
+            'PASSWORD': config('DB_PASSWORD'),
+        }
     }
-}
+else: 
+    DATABASES = {
+       'default': dj_database_url.config(
+           default=config('DATABASE_URL')
+       )
+   }
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
 
 # Password validation
@@ -157,6 +168,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -164,3 +177,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+django_heroku.settings(locals())
