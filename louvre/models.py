@@ -94,7 +94,7 @@ class Image(models.Model):
         '''
         Function that filters images using category
         '''
-        images = cls.objects.filter(category__name__icontains=category)
+        images = cls.objects.filter(name__icontains=category)
         return images
 
     def __str__(self):

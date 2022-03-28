@@ -31,12 +31,12 @@ def search(request):
     '''
     View function that enables search
     '''
-    if 'imagesearched' in request.GET and request.GET['imagesearched']:
-        category = request.GET.get("imagesearched")
-        searched_images = Image.find_image_by_category(category)
+    if 'image' in request.GET and request.GET['image']:
+        category = request.GET.get("image")
+        found_images = Image.find_image_by_category(category)
         message = f"{category}"
 
-        return render(request, 'search.html', {'message': message, 'images':searched_images})
+        return render(request, 'search.html', {'message': message, 'images':found_images})
     else:
-        message = 'Invalid search image category'
+        message = 'Category not found'
         return render(request, 'search.html', {'message': message})

@@ -4,9 +4,50 @@
 {% block content %}
     <div class="container container-fluid">
         {% if images %}
-        <h3 class="text-center">Found {{ images|length }} images in '{{message}}' category</h3>
+        <h3 class="text-center text-white">Found {{ images|length }} images in '{{message}}' category</h3>
+        <!-- condition -->
         {% else %}
-        <h3 class="text-center">Found 0 images for your search {{message}}</h3>
+        <h3 class="text-center text-white">{{message}}</h3>
         {% endif %}
+        <!-- display images -->
+
+        <div class="row">
+            {% if images%}
+            {% for image in images %}
+            <div class="col-sm-6">
+                <img src="{{image.image.url}}" alt="Image">
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+        <!-- <div class="card-columns">
+            {% for image in images %}
+            <a type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
+                <img src="{{image.image.url}}" alt="Image" class="img-thumbnail">
+            </a> -->
+
+            <!-- Modal -->
+            <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{ image.name }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="{{image.image.url}}" alt="Image" class="img-thumbnail">
+                    </div>
+                    <div class="modal-footer">
+                    <input class="form-control input-lg" type="text" value="{{image.image.url}}" id="{{image.id}}.url">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div> -->
     </div>
 {% endblock %}
