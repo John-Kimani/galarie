@@ -56,7 +56,7 @@ class Image(models.Model):
     '''
     Class that handles Images
     '''
-    image = CloudinaryField('image')
+    image = CloudinaryField('images/', default='')
     name = models.CharField(max_length=50)
     description = models.TextField()
     author = models.CharField(max_length=30, default='admin')

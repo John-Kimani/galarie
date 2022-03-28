@@ -13,20 +13,35 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 #importations
 import os
-from decouple import config, Csv
+# import environ
+
+# env= environ.Env()
+
+# environ.Env.read_env()
 
 #cloudinary
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 
+#cloudinary variable
+# CLOUDINARY_CLOUD_NAME = env("CLOUDINARY_CLOUD_NAME")
+# CLOUDINARY_API_KEY = env("CLOUDINARY_API_KEY")
+# CLOUDINARY_API_SECRET = env("CLOUDINARY_API_SECRET")
+
 #cloudinary setup
+# cloudinary.config(
+#     cloud_name = 'CLOUDINARY_CLOUD_NAME',
+#     api_key = 'CLOUDINARY_API_KEY',
+#     api_secret= 'CLOUDINARY_API_SECRET',
+# )
+
 cloudinary.config(
-    cloud_name = config('CLOUDINARY_CLOUD_NAME'),
-    api_key = config('CLOUDINARY_API_KEY'),
-    api_secret=config('CLOUDINARY_API_SECRET'),
-    secure = True
+    cloud_name = 'dbgbail9r',
+    api_key = '914358528891855',
+    api_secret= 'KtFdNz8kBoGAHktKt2CcSKUGE_w',
 )
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,7 +56,7 @@ SECRET_KEY = 'django-insecure-))edcw-#%j1wo_xkel2v0!5qt8sjawvy8(06f#kef2t5(ms1^(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -138,6 +153,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
