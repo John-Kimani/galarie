@@ -5,10 +5,13 @@ This is a gallery application that displays photos based on category and locatio
 
 
 ## Table of contents
-+ [Features](#Features)
-+ [Dependancies](#Dependancies)
-+ [Technology Used](#technology-used)
-+ [Authors Info](#authors-info)
++ [Features](#features)
++ [Dependancies](#dependancies)
++ [How to install ](#how-to-install)
++ [Emvironment variables](#environment-variables)
++ [Technology Used](#technologies-used)
++ [Behaviour Driven Development](#behavior-driven-development)
++ [Authors Info](#author)
 ## App screenshot
 ![Gallerie](/static/images/lourve.png)
 ## Features
