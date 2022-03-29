@@ -35,13 +35,13 @@
         <div class="card-columns mt-4">
             {% for image in images%}
                 <!-- Button trigger modal -->
-                <a type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
+                <a type="button" class="btn" data-toggle="modal" data-target="#pic{{image.id}}">
                     <img src="{{image.image.url}}" alt="Image" class="img-thumbnail">
                 </a>
 
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+                <div class="modal fade" id="pic{{image.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">{{ image.name }}</h5>
@@ -51,6 +51,16 @@
                         </div>
                         <div class="modal-body">
                             <img src="{{image.image.url}}" alt="Image" class="img-thumbnail">
+                            <p style="font-size: 20px;">Photo Description: {{ image.description }}</p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p style="font-size: 15px;">Category: {{image.category}}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p style="font-size: 15px;">Location: {{image.location}}</p>
+                                </div>
+                            </div>
+                            <p style="font-size: 15px;">Posted on: {{image.date}}</p>
                         </div>
                         <div class="modal-footer">
                         <input class="form-control input-lg" type="text" value="{{image.image.url}}" id="{{image.id}}.url">
