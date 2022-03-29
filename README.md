@@ -90,8 +90,3 @@ DJANGO_SECURE_PROXY_SSL_HEADER='HTTP_X_FORWARDED_PROTO,https'
 ## Author
 
 * Design and developed by: [John Kimani](https://github.com/John-Kimani)
-## Dependancies
-In order for you to use the content on this repo ensure you have the following:
-
-- A computer that runs on either of the following; (Windows 7+, Linux, Mac OS)
-- Python 3.6+
