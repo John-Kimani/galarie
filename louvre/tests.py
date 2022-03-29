@@ -1,3 +1,4 @@
+from unicodedata import category, name
 from django.test import TestCase
 from .models import Category, Image, Location
 
@@ -35,7 +36,23 @@ class ImageTestClass(TestCase):
     Test class that test image model 
     '''
     def setUp(self):
-        self.image = Image(name='Photographer', description='At my studio')
+        category1=Category.objects.create(
+            name='outdoor'
+        )
+        location1=Location.objects.create(
+            name="Nairobi"
+        )
+        self.image = Image(
+            name='Photographer', 
+            description='At my studio', 
+            category=category1,
+            location=location1
+        )
+        # self.image_invalid = Image(
+        #     description='At my studio', 
+        #     category=category1,
+        #     location=location1
+        # )
 
     def test_save_method(self):
         self.image.save_image()
